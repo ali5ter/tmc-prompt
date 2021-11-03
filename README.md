@@ -4,6 +4,8 @@ A script that lets you add the current VMware Tanzu Mission Control (TMC) contex
 
 Currently supporting [Starship](https://starship.rs/) as well as your generic $PS1.
 
+![starship prompt example](img/starship_example.png)
+
 ## Installing
 1. Make sure you have the `tmc` CLI installed.
 2. Clone this repository
