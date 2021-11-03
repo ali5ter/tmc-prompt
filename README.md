@@ -5,9 +5,10 @@ A script that lets you add the current VMware Tanzu Mission Control (TMC) contex
 Currently supporting [Starship](https://starship.rs/) as well as your generic $PS1.
 
 ## Installing
-1. Clone this repository
-2. Source [tmc_prompt.sh](tmc_prompt.sh), e.g `source /path/to/tmc_prompt.sh`. You can also source this script from your Bash runcom, e.g. `~/bashrc` to persist the prompt across bash sessions and add any of the configuration overides explained below.
-3. Run `tmc_configure_prompt` to install the prompt
+1. Make sure you have the `tmc` CLI installed.
+2. Clone this repository
+3. Source [tmc_prompt.sh](tmc_prompt.sh), e.g `source /path/to/tmc_prompt.sh`. You can also source this script from your Bash runcom, e.g. `~/bashrc` to persist the prompt across bash sessions and add any of the configuration overides explained below.
+4. Run `tmc_configure_prompt` to install the prompt
 
 ## Options
 There are some options to override the construction of the prompt and its operation for different prompt implementations.
@@ -21,7 +22,7 @@ The TMC prompt format is defined using the following tokens
 | `#MGMT_CLUSTER#` | Default management cluster |
 | `#PROVISIONER#` | Default provisioner |
 
-The default settings can be overridden your Bash runcom by setting the following environment variables:
+The default settings can be overridden by setting the following environment variables:
 
 | Variable | Default | Meaning |
 | :------- | :------ | ------- |
@@ -32,7 +33,7 @@ The default settings can be overridden your Bash runcom by setting the following
 Use `tmc_defaults on` to display the TMC defaults and `tmc_defaults off` to hide them.
 
 ### Starship prompt framework
-The `tmc_configure_prompt` shows or installs a custom prompt for TMC. Any further overrides can be performed in `~/.config/starship.toml` as described in [the Starship documentation](https://starship.rs/config/#custom-commands).
+`tmc_configure_prompt` shows or installs a custom prompt for TMC. Any further overrides can be performed in `~/.config/starship.toml` as described in [the Starship documentation](https://starship.rs/config/#custom-commands).
 
 ### Generic $PS1
 When no prompt implementation is used, `tmc_configure_prompt` will update your `$PROMPT_COMMAND` environment variable and provide a command to toggle the visibility of the TMC prompt.
