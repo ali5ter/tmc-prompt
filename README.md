@@ -6,6 +6,8 @@ Currently supporting [Starship](https://starship.rs/) as well as your generic $P
 
 ![starship prompt example](img/starship_example.png)
 
+[![asciicast](https://asciinema.org/a/1aW05S2GjC89WsRfMLh0l8uNc.svg)](https://asciinema.org/a/1aW05S2GjC89WsRfMLh0l8uNc)
+
 Inspired by the super useful [kube-ps1](https://github.com/jonmosco/kube-ps1)
 
 ## Installing
