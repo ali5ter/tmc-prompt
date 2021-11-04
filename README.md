@@ -14,6 +14,14 @@ Inspired by the super useful [kube-ps1](https://github.com/jonmosco/kube-ps1)
 3. Source [tmc_prompt.sh](tmc_prompt.sh), e.g `. /path/to/tmc_prompt.sh`. You can also source this script from your Bash runcom, e.g. `~/bashrc` to persist the prompt across bash sessions and add any of the configuration overides explained below.
 4. Run `tmc_configure_prompt` to install the prompt
 
+### Starship prompt framework
+`tmc_configure_prompt` shows or installs a custom prompt for TMC. Any further overrides can be performed in `~/.config/starship.toml` as described in [the Starship documentation](https://starship.rs/config/#custom-commands).
+
+### Generic Bash prompt
+Even if you're just using the basic Bash prompt, `tmc_configure_prompt` can update your `$PROMPT_COMMAND` environment variable and provide a command to toggle the visibility of the TMC prompt.
+
+Or just go back to basics with something as simple as `export PS1=tmc_prompt`. Just make sure to source [tmc_prompt.sh](tmc_prompt.sh) first.
+
 ## Helper functions
 Sourcing [tmc_prompt.sh](tmc_prompt.sh) provides the following functions
 | Function Name | Use |
@@ -43,21 +51,13 @@ The default settings can be overridden by setting the following environment vari
 | `TMC_PROMPT_FORMAT` | `⏣ #CONTEXT# #DEFAULTS#` | Default prompt format |
 | `TMC_PROMPT_DEFAULTS_FORMAT` | `(#MGMT_CLUSTER# ⇢ #PROVISIONER#)` | Format of TMC defaults in the prompt |
 
-#### Toggling the visibility of the TMC defaults
+### Toggling the visibility of the TMC defaults
 Use `tmc_defaults on` to display the TMC defaults and `tmc_defaults off` to hide them.
 
-#### Toggling the visibility of the TMC prompt
+### Toggling the visibility of the TMC prompt
 Use `tmc_prompt on` to make the TMC prompt visible and `tmc_prompt off` to hide it.
-
-### Starship prompt framework
-`tmc_configure_prompt` shows or installs a custom prompt for TMC. Any further overrides can be performed in `~/.config/starship.toml` as described in [the Starship documentation](https://starship.rs/config/#custom-commands).
-
-### Generic Bash prompt
-Even if you're just using the basic Bash prompt, `tmc_configure_prompt` can update your `$PROMPT_COMMAND` environment variable and provide a command to toggle the visibility of the TMC prompt.
-
-Or just go back to basics with something as simple as `export PS1=tmc_prompt`. Just make sure to source [tmc_prompt.sh](tmc_prompt.sh) first.
 
 ## Tanzu Mission Control CLI examples
 If you're curious about the TMC CLI and looking for examples, take a look at [my scripts I use to understand the usability and functionality of the TMC CLI](https://github.com/ali5ter/vmware_scripts/tree/master/tmc).
 
-Also, if you're at all interested in CLI taxonomy, check out [cli_taxo] (https://github.com/ali5ter/cli_taxo).
+Also, if you're at all interested in CLI taxonomy, check out [cli_taxo](https://github.com/ali5ter/cli_taxo).
