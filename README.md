@@ -9,8 +9,18 @@ Currently supporting [Starship](https://starship.rs/) as well as your generic $P
 ## Installing
 1. Make sure you have the `tmc` CLI installed.
 2. Clone this repository
-3. Source [tmc_prompt.sh](tmc_prompt.sh), e.g `source /path/to/tmc_prompt.sh`. You can also source this script from your Bash runcom, e.g. `~/bashrc` to persist the prompt across bash sessions and add any of the configuration overides explained below.
+3. Source [tmc_prompt.sh](tmc_prompt.sh), e.g `. /path/to/tmc_prompt.sh`. You can also source this script from your Bash runcom, e.g. `~/bashrc` to persist the prompt across bash sessions and add any of the configuration overides explained below.
 4. Run `tmc_configure_prompt` to install the prompt
+
+## Helper functions
+Sourcing [tmc_prompt.sh](tmc_prompt.sh) provides the following functions
+| Function Name | Use |
+| :------- | ------- |
+| tmc_defaults | Toggles the display of the TMC defaults in the prompt sting |
+| tmc_prompt | Displays the TMC prompt or, when used with args `on` or `off`, toggles the visibility of the TMC prompt |
+| tmc_configure_prompt | Configure the TMC prompt for the supported prompt implementation |
+
+Executing [tmc_prompt.sh](tmc_prompt.sh) directly will echo the TMC prompt string.
 
 ## Options
 There are some options to override the construction of the prompt and its operation for different prompt implementations.
@@ -28,7 +38,7 @@ The default settings can be overridden by setting the following environment vari
 
 | Variable | Default | Meaning |
 | :------- | :------ | ------- |
-| `TMC_PROMPT_FORMAT` | `#CONTEXT# #DEFAULTS#` | Default prompt format |
+| `TMC_PROMPT_FORMAT` | `⏣ #CONTEXT# #DEFAULTS#` | Default prompt format |
 | `TMC_PROMPT_DEFAULTS_FORMAT` | `(#MGMT_CLUSTER# ⇢ #PROVISIONER#)` | Format of TMC defaults in the prompt |
 
 #### Toggling the visibility of the TMC defaults
