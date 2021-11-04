@@ -1,10 +1,12 @@
 # tmc-prompt
 
-A script that lets you add the current VMware Tanzu Mission Control (TMC) context, management clsuter and provisioner to your Bash prompt.
+A script that lets you add the current VMware Tanzu Mission Control (TMC) context, management cluster and provisioner to your Bash prompt.
 
 Currently supporting [Starship](https://starship.rs/) as well as your generic $PS1.
 
 ![starship prompt example](img/starship_example.png)
+
+Inspired by the super useful [kube-ps1](https://github.com/jonmosco/kube-ps1)
 
 ## Installing
 1. Make sure you have the `tmc` CLI installed.
@@ -16,7 +18,7 @@ Currently supporting [Starship](https://starship.rs/) as well as your generic $P
 Sourcing [tmc_prompt.sh](tmc_prompt.sh) provides the following functions
 | Function Name | Use |
 | :------- | ------- |
-| tmc_defaults | Toggles the display of the TMC defaults in the prompt sting |
+| tmc_defaults | Toggles the visibility of the TMC defaults in the prompt sting |
 | tmc_prompt | Displays the TMC prompt or, when used with args `on` or `off`, toggles the visibility of the TMC prompt |
 | tmc_configure_prompt | Configure the TMC prompt for the supported prompt implementation |
 
@@ -44,10 +46,18 @@ The default settings can be overridden by setting the following environment vari
 #### Toggling the visibility of the TMC defaults
 Use `tmc_defaults on` to display the TMC defaults and `tmc_defaults off` to hide them.
 
+#### Toggling the visibility of the TMC prompt
+Use `tmc_prompt on` to make the TMC prompt visible and `tmc_prompt off` to hide it.
+
 ### Starship prompt framework
 `tmc_configure_prompt` shows or installs a custom prompt for TMC. Any further overrides can be performed in `~/.config/starship.toml` as described in [the Starship documentation](https://starship.rs/config/#custom-commands).
 
-### Generic $PS1
-When no prompt implementation is used, `tmc_configure_prompt` will update your `$PROMPT_COMMAND` environment variable and provide a command to toggle the visibility of the TMC prompt.
+### Generic Bash prompt
+Even if you're just using the basic Bash prompt, `tmc_configure_prompt` can update your `$PROMPT_COMMAND` environment variable and provide a command to toggle the visibility of the TMC prompt.
 
-Use `tmc_prompt on` to make the TMC prompt visible and `tmc_prompt off` to hide it.
+Or just go back to basics with something as simple as `export PS1=tmc_prompt`. Just make sure to source [tmc_prompt.sh](tmc_prompt.sh) first.
+
+## Tanzu Mission Control CLI examples
+If you're curious about the TMC CLI and looking for examples, take a look at [my scripts I use to understand the usability and functionality of the TMC CLI](https://github.com/ali5ter/vmware_scripts/tree/master/tmc).
+
+Also, if you're at all interested in CLI taxonomy, check out [cli_taxo] (https://github.com/ali5ter/cli_taxo).

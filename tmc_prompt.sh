@@ -17,7 +17,7 @@ _tmc_init() {
     export TMC_PROMPT_ENABLED='on'
     export TMC_PROMPT_DEFAULTS_ENABLED='on'
 }
-[[ -z "$TMC_PROMPT_SCRIPT_DIR" ]] && _tmc_init
+[[ -z "$TMC_PROMPT_SCRIPT_DIR" || "$1" == 'init' ]] && _tmc_init
 
 # fetch the current context
 _tmc_fetch_context() {
@@ -79,11 +79,19 @@ tmc_configure_prompt() {
     local framework="$1"
     local configFile config
     if [ -z "$framework" ]; then
-        # shellcheck disable=SC2162
-        read -p "✋ What framework are you using for your prompt? [starship|none] " framework
+        echo "The following prompts are supported:"
+        echo "    1 ... starship"
+        echo "    2 ... generic Bash prompt"
+        until [[ "$REPLY" =~ ^-?[0-9]+$ && "$REPLY" -gt 0 && "$REPLY" -lt 3 ]]; do
+            # shellcheck disable=SC2162
+            read -p "✋ Select the prompt type you'd like me to configure [1|2] "  -r -n 1
+            echo
+        done
+        echo
+        framework="$REPLY"
     fi
     case $framework in
-        starship)
+        1|starship)
             configFile=~/.config/starship.toml
             # shellcheck disable=SC1073
             config=$(cat <<END_OF_STARSHIP_CONFIG
@@ -94,16 +102,28 @@ when= "command -v tmc 1>/dev/null 2>&1"
 disabled = false
 END_OF_STARSHIP_CONFIG
             )
-            echo "$config" >> "$configFile"
-            echo "✅ Added custom prompt to your starship configuration at $configFile"
+            echo -e "Copy the following to $configFile:\n"
+            echo "$config"
+            echo
+            read -p "✋ Shall I append this to $configFile for you? [y/N] " -n 1 -r
+            echo
+            [[ $REPLY =~ ^[Yy]$ ]] && {
+                echo "$config" >> "$configFile"
+                echo "✅ Added the TMC custom prompt to your starship configuration"
+            }
             ;;
         powerline-go)
             ## TODO
             ;;
-        none)
-            _tmc_build_prompt
-            PROMPT_COMMAND="tmc_prompt; ${PROMPT_COMMAND:-}"
-            echo "✅ PS1 now includes the TMC prompt. Use 'tmc_prompt [on|off]' to toggle display of the prompt"
+        2|none)
+            read -p "✋ Shall I pre-pend the TMC prompt to your existing \$PROMPT_COMMAND? [y/N] " -n 1 -r
+            echo
+            if [[ $REPLY =~ ^[Yy]$ ]]; then
+                PROMPT_COMMAND="tmc_prompt; ${PROMPT_COMMAND:-}"
+                echo "✅ PS1 now includes the TMC prompt. Use 'tmc_prompt [on|off]' to toggle display of the prompt"
+            else
+                echo "👍 Ok, you can add 'tmc_prompt' to \$PS1."
+            fi
             ;;
         *)
             echo "🤔 I don't recognize a framework called $framework"
