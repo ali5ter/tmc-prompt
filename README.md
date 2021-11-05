@@ -32,7 +32,7 @@ export PS1=tmc_prompt
 Sourcing [tmc_prompt.sh](tmc_prompt.sh) provides the following functions
 | Function Name | Use |
 | :------- | ------- |
-| tmc_defaults | Toggles the visibility of the TMC defaults in the prompt sting |
+| tmc_defaults | Toggles the visibility of the TMC defaults in the prompt string using args `on` or `off` |
 | tmc_prompt | Displays the TMC prompt or, when used with args `on` or `off`, toggles the visibility of the TMC prompt |
 | tmc_configure_prompt | Configure the TMC prompt for the supported prompt implementation |
 
