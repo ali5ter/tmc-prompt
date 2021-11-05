@@ -20,9 +20,13 @@ Inspired by the super useful [kube-ps1](https://github.com/jonmosco/kube-ps1)
 `tmc_configure_prompt` shows or installs a custom prompt for TMC. Any further overrides can be performed in `~/.config/starship.toml` as described in [the Starship documentation](https://starship.rs/config/#custom-commands).
 
 ### Generic Bash prompt
-Even if you're just using the basic Bash prompt, `tmc_configure_prompt` can update your `$PROMPT_COMMAND` environment variable and provide a command to toggle the visibility of the TMC prompt.
+Even if you're just using the basic Bash prompt, `tmc_configure_prompt` can update your `$PROMPT_COMMAND` environment variable and provide a helper function to toggle the visibility of the TMC prompt.
 
-Or just go back to basics with something as simple as `export PS1=tmc_prompt`. Just make sure to source [tmc_prompt.sh](tmc_prompt.sh) first.
+Of course, you can also simply source [tmc_prompt.sh](tmc_prompt.sh) and set `$PS1`
+```shell
+source /path/to/tmc_prompt.sh
+export PS1=tmc_prompt
+```
 
 ## Helper functions
 Sourcing [tmc_prompt.sh](tmc_prompt.sh) provides the following functions
@@ -35,7 +39,7 @@ Sourcing [tmc_prompt.sh](tmc_prompt.sh) provides the following functions
 Executing [tmc_prompt.sh](tmc_prompt.sh) directly will echo the TMC prompt string.
 
 ## Options
-There are some options to override the construction of the prompt and its operation for different prompt implementations.
+There are some options to override the construction of the prompt.
 
 ### Prompt format
 The TMC prompt format is defined using the following tokens
