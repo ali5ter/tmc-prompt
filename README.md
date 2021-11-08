@@ -63,7 +63,9 @@ Use `tmc_defaults on` to display the TMC defaults and `tmc_defaults off` to hide
 ### Toggling the visibility of the TMC prompt
 Use `tmc_prompt on` to make the TMC prompt visible and `tmc_prompt off` to hide it.
 
-## Tanzu Mission Control CLI examples
+## Other Tanzu Mission Control CLI stuff
+You can use [the tmctx, tmcmc and tmcp utilites](https://github.com/ali5ter/tmcctx) to help switch between TMC CLI contexts, management clusters and provisioners.
+
 If you're curious about the TMC CLI and looking for examples, take a look at [my scripts I use to understand the usability and functionality of the TMC CLI](https://github.com/ali5ter/vmware_scripts/tree/master/tmc).
 
 Also, if you're at all interested in CLI taxonomy, check out [cli_taxo](https://github.com/ali5ter/cli_taxo).
