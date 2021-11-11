@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# @file test_tmc_prompt [starship|generic]
+# Test tmc-prompt variations
+# @author Alister Lewis-Bowen <alister@lewis-bowen.org>
+
+CONTAINER_NAME='test-tmc-prompt'
+# shellcheck disable=2155
+export CSP_API_TOKEN="$(cat ~/.config/csp-staging-token)" # CSP refresh token
+
+set_up() {
+	docker run -td --name "$CONTAINER_NAME" \
+		-e CSP_API_TOKEN \
+		--rm ubuntu:18.04
+}
+
+set_up_variant() {
+	local variant
+	variant="${1-starship}"
+
+	docker cp "test_${variant}.sh" "$CONTAINER_NAME":/
+	docker exec -it "$CONTAINER_NAME" "/test_${variant}.sh"
+}
+
+provide_shell() {
+	docker exec -it "$CONTAINER_NAME" /bin/bash 
+}
+
+tear_down() {
+	docker stop "$CONTAINER_NAME"
+}
+
+main() {
+	local variant
+	variant="${1-starship}"
+
+	set_up
+	case "$variant" in
+		s*)	set_up_variant starship;;
+		*) 	set_up_variant generic;;
+	esac
+	provide_shell
+	tear_down
+}
+
+main "$@"
