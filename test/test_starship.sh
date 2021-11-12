@@ -28,12 +28,11 @@ chmod 755 tmc
 mv tmc /usr/local/bin/
 echo "source <(tmc completion bash)" >> ~/.bashrc
 
-# Download and configure tmc-prompt
-git clone https://github.com/ali5ter/tmc-prompt.git
-echo "source /tmc-prompt/tmc_prompt.sh" >> ~/.bashrc
+# Configure tmc-prompt
 # shellcheck disable=1091
-source /tmc-prompt/tmc_prompt.sh
+source /tmc_prompt.sh
 tmc_configure_prompt starship
+echo "source /tmc_prompt.sh" >> ~/.bashrc
 
 # Create fresh TMC context
 export TMC_API_TOKEN="$CSP_API_TOKEN" && unset CSP_API_TOKEN

@@ -7,10 +7,11 @@ CONTAINER_NAME='test-tmc-prompt'
 # shellcheck disable=2155
 export CSP_API_TOKEN="$(cat ~/.config/csp-staging-token)" # CSP refresh token
 
-set_up() {
+stand_up() {
 	docker run -td --name "$CONTAINER_NAME" \
 		-e CSP_API_TOKEN \
 		--rm ubuntu:18.04
+	docker cp "$PWD/../tmc_prompt.sh" "$CONTAINER_NAME":/
 }
 
 set_up_variant() {
@@ -33,7 +34,7 @@ main() {
 	local variant
 	variant="${1-starship}"
 
-	set_up
+	stand_up
 	case "$variant" in
 		s*)	set_up_variant starship;;
 		*) 	set_up_variant generic;;

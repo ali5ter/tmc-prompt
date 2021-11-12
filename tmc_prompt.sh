@@ -54,7 +54,7 @@ _tmc_build_prompt() {
             prompt="${prompt//#DEFAULTS#/}"
         fi
         export TMC_PROMPT="$prompt"
-        [[ "$TMC_PROMPT_ENABLED" == 'on' ]] && echo "$TMC_PROMPT"
+        [[ "$TMC_PROMPT_ENABLED" == 'on' ]] && echo -en "$TMC_PROMPT"
     else
         return 1
     fi
@@ -111,19 +111,17 @@ END_OF_STARSHIP_CONFIG
                 echo "$config" >> "$configFile"
                 echo "✅ Added the TMC custom prompt to your starship configuration"
             }
+            echo "Copy the following to your runcom, e.g. .bashrc or .bash_profile:\n"
+            echo "source ${PWD}/tmc_prompt.sh"
             ;;
         powerline-go)
             ## TODO
             ;;
         2|none)
-            read -p "✋ Shall I pre-pend the TMC prompt to your existing \$PROMPT_COMMAND? [y/N] " -n 1 -r
+            echo -e "Copy the following to your runcom, e.g. .bashrc or .bash_profile:\n"
+            echo "source ${PWD}/tmc_prompt.sh"
+            echo "export PROMPT_COMMAND=\"tmc_prompt;  \${PROMPT_COMMAND:-}\""
             echo
-            if [[ $REPLY =~ ^[Yy]$ ]]; then
-                PROMPT_COMMAND="tmc_prompt; ${PROMPT_COMMAND:-}"
-                echo "✅ PS1 now includes the TMC prompt. Use 'tmc_prompt [on|off]' to toggle display of the prompt"
-            else
-                echo "👍 Ok, you can add 'tmc_prompt' to \$PS1."
-            fi
             ;;
         *)
             echo "🤔 I don't recognize a framework called $framework"
@@ -132,4 +130,7 @@ END_OF_STARSHIP_CONFIG
 }
 
 # Return prompt if this script is called directly
-[ "${BASH_SOURCE[0]}" -ef "$0" ] && tmc_prompt
+[ "${BASH_SOURCE[0]}" -ef "$0" ] && {
+    tmc_prompt
+    [[ $(tty) =~ "not a tty" ]] || echo
+}
