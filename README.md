@@ -1,3 +1,5 @@
+> **⚠️ This project is archived and no longer maintained.**
+
 # tmc-prompt
 
 A script that lets you add the current VMware Tanzu Mission Control (TMC) context, management cluster and provisioner to your Bash prompt.
