@@ -1,4 +1,4 @@
-> **⚠️ Archived 2025-08-24. No longer maintained.**
+> **⚠️ Archived 2025-08-25. No longer maintained.**
 
 # tmc-prompt
 
